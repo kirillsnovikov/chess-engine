@@ -1,5 +1,5 @@
-import { FIGURE_COLOR } from "../constants";
-import { Color } from "../types";
+import { FIGURE_COLOR } from '../constants';
+import { Color } from '../types';
 
 export class FigureColor {
   constructor(private _color: FIGURE_COLOR, private _hex: Color) {}

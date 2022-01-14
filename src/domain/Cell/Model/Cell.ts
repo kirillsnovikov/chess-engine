@@ -1,8 +1,9 @@
-import { CellColor } from "./CellColor";
-import { CellId } from "./CellId";
+import { CellColor } from './CellColor';
+import { CellId } from './CellId';
 
 export class Cell {
   private _id: CellId;
+
   private _color: CellColor;
 
   constructor(cellId: CellId, cellColor: CellColor) {

@@ -1,10 +1,12 @@
-import { FigureId } from "./FigureId";
-import { FigureColor } from "./FigureColor";
-import { ChessFigureType } from "./ChessFigureType";
+import { FigureId } from './FigureId';
+import { FigureColor } from './FigureColor';
+import { ChessFigureType } from './ChessFigureType';
 
 export class ChessFigure {
   private _id: FigureId;
+
   private _title: ChessFigureType;
+
   private _color: FigureColor;
 
   constructor(figureId: FigureId, title: ChessFigureType, color: FigureColor) {

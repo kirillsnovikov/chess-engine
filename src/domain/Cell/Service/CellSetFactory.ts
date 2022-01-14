@@ -3,13 +3,14 @@ import {
   CELL_COLOR,
   CELL_VERTICAL_NAME,
   CELL_WHITE_COLOR_HEX,
-} from "../constants";
-import { Cell } from "../Model/Cell";
-import { CellColor } from "../Model/CellColor";
-import { CellId } from "../Model/CellId";
+} from '../constants';
+import { Cell } from '../Model/Cell';
+import { CellColor } from '../Model/CellColor';
+import { CellId } from '../Model/CellId';
 
 export class CellSetFactory {
   private _cells: Cell[] = [];
+
   constructor(private _number: number) {
     this.fillCells();
   }
@@ -32,16 +33,16 @@ export class CellSetFactory {
 
     const blackCellColor = new CellColor(
       CELL_COLOR.BLACK,
-      CELL_BLACK_COLOR_HEX
+      CELL_BLACK_COLOR_HEX,
     );
     const whiteCellColor = new CellColor(
       CELL_COLOR.WHITE,
-      CELL_WHITE_COLOR_HEX
+      CELL_WHITE_COLOR_HEX,
     );
     let isBlack = true;
 
-    rows.forEach((row) => {
-      columns.forEach((column) => {
+    rows.forEach(row => {
+      columns.forEach(column => {
         const cellId = new CellId(`${column}${row}`);
         const cellColor = isBlack ? blackCellColor : whiteCellColor;
         const cell = new Cell(cellId, cellColor);

@@ -1,5 +1,5 @@
-import { CELL_COLOR } from "../constants";
-import { Color } from "../types";
+import { CELL_COLOR } from '../constants';
+import { Color } from '../types';
 
 export class CellColor {
   constructor(private _color: CELL_COLOR, private _hex: Color) {}

@@ -1,9 +1,9 @@
-export enum FIGURE_COLOR {
+export enum PIECE_COLOR {
   BLACK,
   WHITE,
 }
 
-export enum CHESS_FIGURE_TYPE {
+export enum CHESS_PIECE_TYPE {
   PAWN = 'Пешка',
   ROOK = 'Ладья',
   KNIGHT = 'Конь',
@@ -12,5 +12,5 @@ export enum CHESS_FIGURE_TYPE {
   KING = 'Король',
 }
 
-export const FIGURE_BLACK_COLOR_HEX = '423939';
-export const FIGURE_WHITE_COLOR_HEX = 'e0dada';
+export const PIECE_BLACK_COLOR_HEX = '423939';
+export const PIECE_WHITE_COLOR_HEX = 'e0dada';

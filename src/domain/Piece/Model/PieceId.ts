@@ -1,6 +1,6 @@
 import { Id } from '../types';
 
-export class FigureId {
+export class PieceId {
   constructor(private _id: Id) {
     if (_id === '') {
       throw Error('ID cant be as empty string');

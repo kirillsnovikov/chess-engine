@@ -1,6 +1,6 @@
 import { Coordinate } from '../types';
 
-export class FigureCoordinate {
+export class PieceCoordinate {
   private _coordinate: Coordinate;
 
   constructor(coordinate: Coordinate) {
@@ -11,7 +11,7 @@ export class FigureCoordinate {
     return this._coordinate;
   }
 
-  changeCoordinate(coordinate: Coordinate): Coordinate {
-    return new FigureCoordinate(coordinate).coordinate;
+  changeCoordinate(coordinate: Coordinate): PieceCoordinate {
+    return new PieceCoordinate(coordinate);
   }
 }

@@ -6,6 +6,8 @@ export class PlacePiecesOnBoard {
 
   private _pieces = ChessPieceSet.pieces;
 
+  // TODO реализовать размещение фигур на доске
+
   public run() {
     console.log('cells', this._cells, 'pieces', this._pieces);
   }

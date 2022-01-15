@@ -1,6 +1,7 @@
 import {
   CELL_BLACK_COLOR_HEX,
   CELL_COLOR,
+  CELL_HORIZONTAL_NAME,
   CELL_VERTICAL_NAME,
   CELL_WHITE_COLOR_HEX,
 } from '../constants';
@@ -26,7 +27,7 @@ export class CellSetFactory {
   private fillCells(): void {
     const rows = Array(this._number)
       .fill(0)
-      .map((_, k) => k + 1);
+      .map((_, k) => Object.values(CELL_HORIZONTAL_NAME)[k]);
     const columns = Array(this._number)
       .fill(0)
       .map((_, i) => Object.values(CELL_VERTICAL_NAME)[i]);

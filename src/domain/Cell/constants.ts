@@ -16,5 +16,18 @@ export enum CELL_VERTICAL_NAME {
   J = 'j',
 }
 
+export enum CELL_HORIZONTAL_NAME {
+  ONE = '1',
+  TWO = '2',
+  THREE = '3',
+  FOUR = '4',
+  FIVE = '5',
+  SIX = '6',
+  SEVEN = '7',
+  EIGHT = '8',
+  NINE = '9',
+  TEN = '10',
+}
+
 export const CELL_BLACK_COLOR_HEX = '#2e402e';
 export const CELL_WHITE_COLOR_HEX = '#cfdece';

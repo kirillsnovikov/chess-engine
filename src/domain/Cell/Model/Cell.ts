@@ -12,7 +12,7 @@ export class Cell {
   }
 
   get id() {
-    return this._id.value;
+    return this._id;
   }
 
   get colorHexValue() {

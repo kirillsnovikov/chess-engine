@@ -1,20 +1,17 @@
 import { Cell } from '../Model/Cell';
+import { Id } from '../types';
 import { CellSetFactory } from './CellSetFactory';
 
 export class ChessCellSet {
-  private _numberCell = 8;
+  static _numberCell = 8;
 
-  private _set: Cell[];
+  static cells: Cell[] = new CellSetFactory(this._numberCell).cells;
 
-  constructor() {
-    this._set = new CellSetFactory(this._numberCell).cells;
+  public static reset(): void {
+    ChessCellSet.cells = new CellSetFactory(this._numberCell).cells;
   }
 
-  public get set() {
-    return this._set;
-  }
-
-  public reset(): void {
-    this._set = new CellSetFactory(this._numberCell).cells;
+  public static findCellById(id: Id): Cell {
+    return ChessCellSet.cells.find(cell => cell.id.value === id) as Cell;
   }
 }

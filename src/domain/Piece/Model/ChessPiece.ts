@@ -7,20 +7,22 @@ import { Coordinate } from '../types';
 export class ChessPiece {
   private _id: PieceId;
 
-  private _title: ChessPieceType;
+  private _type: ChessPieceType;
 
   private _color: PieceColor;
 
   private _coordinate: PieceCoordinate;
 
+  private _avaliableCoordinates: PieceCoordinate[] = [];
+
   constructor(
     pieceId: PieceId,
-    title: ChessPieceType,
+    type: ChessPieceType,
     color: PieceColor,
     coordinate: PieceCoordinate,
   ) {
     this._id = pieceId;
-    this._title = title;
+    this._type = type;
     this._color = color;
     this._coordinate = coordinate;
   }
@@ -29,8 +31,8 @@ export class ChessPiece {
     return this._id.value;
   }
 
-  get title() {
-    return this._title;
+  get type() {
+    return this._type;
   }
 
   get colorHexValue() {

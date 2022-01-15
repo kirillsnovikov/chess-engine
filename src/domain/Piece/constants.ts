@@ -12,5 +12,5 @@ export enum CHESS_PIECE_TYPE {
   KING = 'Король',
 }
 
-export const PIECE_BLACK_COLOR_HEX = '423939';
-export const PIECE_WHITE_COLOR_HEX = 'e0dada';
+export const PIECE_BLACK_COLOR_HEX = '#423939';
+export const PIECE_WHITE_COLOR_HEX = '#e0dada';

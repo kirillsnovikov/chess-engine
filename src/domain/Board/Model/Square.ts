@@ -1,5 +1,7 @@
 import { Cell } from '../../Cell/Model/Cell';
+import { PIECE_COLOR } from '../../Piece/constants';
 import { ChessPiece } from '../../Piece/Model/ChessPiece';
+import { ChessPieceType } from '../../Piece/Model/ChessPieceType';
 
 export class Square {
   private _cell: Cell;
@@ -25,10 +27,6 @@ export class Square {
     return this._cell.id;
   }
 
-  public get cell() {
-    return this._cell;
-  }
-
   public get horizontalName() {
     return this._cell.horizontalName;
   }
@@ -37,15 +35,31 @@ export class Square {
     return this._cell.verticalName;
   }
 
-  public get pieceColor() {
+  // public get piece() {
+  //   return this._piece;
+  // }
+
+  public get pieceColor(): PIECE_COLOR {
+    return this._piece?.color as PIECE_COLOR;
+  }
+
+  public get pieceHexColor() {
     return this._piece?.colorHexValue;
   }
 
-  public get availableCells() {
+  public get pieceType(): ChessPieceType {
+    return this._piece?.type as ChessPieceType;
+  }
+
+  public get pieceIsMoved(): boolean {
+    return this._piece?.isMoved as boolean;
+  }
+
+  public get availableSquares() {
     return this._availableSquares;
   }
 
-  public set availableCells(cells: Square[]) {
+  public set availableSquares(cells: Square[]) {
     this._availableSquares = cells;
   }
 

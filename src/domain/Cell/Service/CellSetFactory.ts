@@ -31,14 +31,8 @@ export class CellSetFactory {
       .fill(0)
       .map((_, i) => Object.values(CELL_VERTICAL_NAME)[i]);
 
-    const blackCellColor = new CellColor(
-      CELL_COLOR.BLACK,
-      CELL_BLACK_COLOR_HEX,
-    );
-    const whiteCellColor = new CellColor(
-      CELL_COLOR.WHITE,
-      CELL_WHITE_COLOR_HEX,
-    );
+    const blackCellColor = new CellColor(CELL_COLOR.BLACK, CELL_BLACK_COLOR_HEX);
+    const whiteCellColor = new CellColor(CELL_COLOR.WHITE, CELL_WHITE_COLOR_HEX);
     let isBlack = true;
 
     rows.forEach(row => {

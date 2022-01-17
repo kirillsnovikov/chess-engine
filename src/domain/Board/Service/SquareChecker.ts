@@ -1,45 +1,129 @@
-import { CELL_HORIZONTAL_NAME, CELL_VERTICAL_NAME } from '../../Cell/constants';
+import isNil from 'lodash/isNil';
 import { Id } from '../../Cell/types';
+import { CHESS_PIECE_TYPE, PIECE_COLOR } from '../../Piece/constants';
 import { Square } from '../Model/Square';
+import { SquareNameChecker } from './SquareNameChecker';
 
 export class SquareChecker {
   constructor(private _squares: Square[]) {}
 
-  public getAvailableSquares(currentSquare: Square): Square[] {
-    const squares: Square[] = [];
-
-    const availableSquare = this.getUpSquare(currentSquare);
-
-    if (!!availableSquare) {
-      squares.push(availableSquare);
-    }
-    return squares;
+  public checkSquares() {
+    this._squares.forEach(square => {
+      if (square.isEmpty) {
+        return;
+      }
+      switch (square.pieceType.value) {
+        case CHESS_PIECE_TYPE.BISHOP: {
+          this.setBishopAvailableSquares(square);
+          break;
+        }
+        case CHESS_PIECE_TYPE.KING: {
+          this.setKingAvailableSquares(square);
+          break;
+        }
+        case CHESS_PIECE_TYPE.KNIGHT: {
+        }
+        case CHESS_PIECE_TYPE.PAWN: {
+          this.setPawnAvailableSquares(square);
+          break;
+        }
+        case CHESS_PIECE_TYPE.QUEEN: {
+          this.setQueenAvailableSquares(square);
+          break;
+        }
+        case CHESS_PIECE_TYPE.ROOK: {
+          this.setRookAvailableSquares(square);
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
   }
 
-  public getUpSquare(currentSquare: Square) {
-    const verticalName = this.getNextVerticalName(currentSquare.verticalName);
+  private setBishopAvailableSquares(currentSquare: Square) {
+    const squares = [
+      ...this.getLeftDiaginalSquares(currentSquare),
+      ...this.getRightDiagonalSquares(currentSquare),
+    ];
+
+    currentSquare.availableSquares = squares;
+  }
+
+  private setKingAvailableSquares(currentSquare: Square) {
+    const squares = [
+      ...this.getVerticalSquares(currentSquare, 1),
+      ...this.getHorizontalSquares(currentSquare, 1),
+      ...this.getLeftDiaginalSquares(currentSquare, 1),
+      ...this.getRightDiagonalSquares(currentSquare, 1),
+    ];
+
+    currentSquare.availableSquares = squares;
+  }
+
+  private setPawnAvailableSquares(currentSquare: Square) {
+    const count = currentSquare.pieceIsMoved ? 1 : 2;
+    const squares =
+      currentSquare.pieceColor === PIECE_COLOR.WHITE
+        ? this.getUpSquares(currentSquare, count)
+        : this.getDownSquares(currentSquare, count);
+
+    currentSquare.availableSquares = squares;
+  }
+
+  private setQueenAvailableSquares(currentSquare: Square) {
+    const squares = [
+      ...this.getVerticalSquares(currentSquare),
+      ...this.getHorizontalSquares(currentSquare),
+      ...this.getLeftDiaginalSquares(currentSquare),
+      ...this.getRightDiagonalSquares(currentSquare),
+    ];
+
+    currentSquare.availableSquares = squares;
+  }
+
+  private setRookAvailableSquares(currentSquare: Square) {
+    const squares = [
+      ...this.getVerticalSquares(currentSquare),
+      ...this.getHorizontalSquares(currentSquare),
+    ];
+
+    currentSquare.availableSquares = squares;
+  }
+
+  private getUpSquare = (currentSquare: Square): Square | undefined => {
+    const verticalName = SquareNameChecker.getNextVerticalName(currentSquare.verticalName);
 
     if (!verticalName) {
       return undefined;
     }
 
     return this.squareById(`${currentSquare.horizontalName}${verticalName}`);
-  }
+  };
 
-  public getDownSquare(currentSquare: Square): Square | undefined {
-    const verticalName = this.getPreviousVerticalName(
-      currentSquare.verticalName,
-    );
+  private getDownSquare = (currentSquare: Square): Square | undefined => {
+    const verticalName = SquareNameChecker.getPreviousVerticalName(currentSquare.verticalName);
 
     if (!verticalName) {
       return undefined;
     }
 
     return this.squareById(`${currentSquare.horizontalName}${verticalName}`);
-  }
+  };
 
-  public getRightSquare(currentSquare: Square): Square | undefined {
-    const horizontalName = this.getNextHorizontalName(
+  private getRightSquare = (currentSquare: Square): Square | undefined => {
+    const horizontalName = SquareNameChecker.getNextHorizontalName(currentSquare.horizontalName);
+
+    if (!horizontalName) {
+      return undefined;
+    }
+
+    return this.squareById(`${horizontalName}${currentSquare.verticalName}`);
+  };
+
+  private getLeftSquare = (currentSquare: Square): Square | undefined => {
+    const horizontalName = SquareNameChecker.getPreviousHorizontalName(
       currentSquare.horizontalName,
     );
 
@@ -48,23 +132,22 @@ export class SquareChecker {
     }
 
     return this.squareById(`${horizontalName}${currentSquare.verticalName}`);
-  }
+  };
 
-  public getLeftSquare(currentSquare: Square): Square | undefined {
-    const horizontalName = this.getPreviousHorizontalName(
-      currentSquare.horizontalName,
-    );
+  private getUpRightSquare = (currentSquare: Square): Square | undefined => {
+    const verticalName = SquareNameChecker.getNextVerticalName(currentSquare.verticalName);
+    const horizontalName = SquareNameChecker.getNextHorizontalName(currentSquare.horizontalName);
 
-    if (!horizontalName) {
+    if (!(horizontalName && verticalName)) {
       return undefined;
     }
 
-    return this.squareById(`${horizontalName}${currentSquare.verticalName}`);
-  }
+    return this.squareById(`${horizontalName}${verticalName}`);
+  };
 
-  public getUpRightSquare(currentSquare: Square): Square | undefined {
-    const verticalName = this.getNextVerticalName(currentSquare.verticalName);
-    const horizontalName = this.getNextHorizontalName(
+  private getUpLeftSquare = (currentSquare: Square): Square | undefined => {
+    const verticalName = SquareNameChecker.getNextVerticalName(currentSquare.verticalName);
+    const horizontalName = SquareNameChecker.getPreviousHorizontalName(
       currentSquare.horizontalName,
     );
 
@@ -73,41 +156,121 @@ export class SquareChecker {
     }
 
     return this.squareById(`${horizontalName}${verticalName}`);
+  };
+
+  private getDownRightSquare = (currentSquare: Square): Square | undefined => {
+    const verticalName = SquareNameChecker.getPreviousVerticalName(currentSquare.verticalName);
+    const horizontalName = SquareNameChecker.getNextHorizontalName(currentSquare.horizontalName);
+
+    if (!(horizontalName && verticalName)) {
+      return undefined;
+    }
+
+    return this.squareById(`${horizontalName}${verticalName}`);
+  };
+
+  private getDownLeftSquare = (currentSquare: Square): Square | undefined => {
+    const verticalName = SquareNameChecker.getPreviousVerticalName(currentSquare.verticalName);
+    const horizontalName = SquareNameChecker.getPreviousHorizontalName(
+      currentSquare.horizontalName,
+    );
+
+    if (!(horizontalName && verticalName)) {
+      return undefined;
+    }
+
+    return this.squareById(`${horizontalName}${verticalName}`);
+  };
+
+  private getRecursiveSquares(
+    currentSquare: Square,
+    fn: (currentSquare: Square) => Square | undefined,
+    count?: number,
+  ): Square[] {
+    const nextSquare = fn(currentSquare);
+
+    if (!nextSquare || count === 0) {
+      return [];
+    } else {
+      if (nextSquare.isEmpty) {
+        return [
+          nextSquare,
+          ...this.getRecursiveSquares(nextSquare, fn, !isNil(count) ? count - 1 : count),
+        ];
+      }
+
+      if (!nextSquare.isEmpty && nextSquare.pieceColor !== currentSquare.pieceColor) {
+        return [nextSquare];
+      }
+
+      if (!nextSquare.isEmpty && nextSquare.pieceColor === currentSquare.pieceColor) {
+        return [];
+      }
+    }
+    return [];
+  }
+
+  private getVerticalSquares(currentSquare: Square, count?: number): Square[] {
+    return [
+      ...this.getUpSquares(currentSquare, count),
+      ...this.getDownSquares(currentSquare, count),
+    ];
+  }
+
+  private getUpSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getUpSquare, count);
+  }
+
+  private getDownSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getDownSquare, count);
+  }
+
+  private getHorizontalSquares(currentSquare: Square, count?: number): Square[] {
+    return [
+      ...this.getRightSquares(currentSquare, count),
+      ...this.getLeftSquares(currentSquare, count),
+    ];
+  }
+
+  private getRightSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getRightSquare, count);
+  }
+
+  private getLeftSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getLeftSquare, count);
+  }
+
+  private getLeftDiaginalSquares(currentSquare: Square, count?: number): Square[] {
+    return [
+      ...this.getUpLeftSquares(currentSquare, count),
+      ...this.getDownRightSquares(currentSquare, count),
+    ];
+  }
+
+  private getRightDiagonalSquares(currentSquare: Square, count?: number): Square[] {
+    return [
+      ...this.getUpRightSquares(currentSquare, count),
+      ...this.getDownLeftSquares(currentSquare, count),
+    ];
+  }
+
+  private getUpLeftSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getUpLeftSquare, count);
+  }
+
+  private getUpRightSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getUpRightSquare, count);
+  }
+
+  private getDownLeftSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getDownLeftSquare, count);
+  }
+
+  private getDownRightSquares(currentSquare: Square, count?: number): Square[] {
+    return this.getRecursiveSquares(currentSquare, this.getDownRightSquare, count);
   }
 
   private squareById(id: Id): Square | undefined {
     return this._squares.find(square => square.cellId.value === id);
-  }
-
-  private getPreviousHorizontalName(
-    horizontalName: CELL_HORIZONTAL_NAME,
-  ): CELL_HORIZONTAL_NAME | undefined {
-    const values = Object.values(CELL_HORIZONTAL_NAME);
-    const index = values.indexOf(horizontalName);
-    return values[index - 1];
-  }
-
-  private getPreviousVerticalName(
-    verticalName: CELL_VERTICAL_NAME,
-  ): CELL_VERTICAL_NAME | undefined {
-    const values = Object.values(CELL_VERTICAL_NAME);
-    const index = values.indexOf(verticalName);
-    return values[index - 1];
-  }
-
-  private getNextHorizontalName(
-    horizontalName: CELL_HORIZONTAL_NAME,
-  ): CELL_HORIZONTAL_NAME | undefined {
-    const values = Object.values(CELL_HORIZONTAL_NAME);
-    const index = values.indexOf(horizontalName);
-    return values[index + 1];
-  }
-
-  private getNextVerticalName(
-    verticalName: CELL_VERTICAL_NAME,
-  ): CELL_VERTICAL_NAME | undefined {
-    const values = Object.values(CELL_VERTICAL_NAME);
-    const index = values.indexOf(verticalName);
-    return values[index + 1];
   }
 }

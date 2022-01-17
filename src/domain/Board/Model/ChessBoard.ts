@@ -16,11 +16,6 @@ export class ChessBoard {
 
   public checkAvailableCoordinates(): void {
     const checker = new SquareChecker(this._squares);
-    this._squares.forEach(square => {
-      if (square.isEmpty) {
-        return;
-      }
-      square.availableCells = checker.getAvailableSquares(square);
-    });
+    checker.checkSquares();
   }
 }

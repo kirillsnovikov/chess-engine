@@ -18,6 +18,10 @@ export class ChessPiece {
     return this._type;
   }
 
+  get color() {
+    return this._color.color;
+  }
+
   get colorHexValue() {
     return this._color.hexValue;
   }

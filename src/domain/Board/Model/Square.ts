@@ -1,33 +1,42 @@
-import { CELL_COLOR, CELL_WHITE_COLOR_HEX } from '../../Cell/constants';
 import { Cell } from '../../Cell/Model/Cell';
-import { CellColor } from '../../Cell/Model/CellColor';
-import { CellId } from '../../Cell/Model/CellId';
 import { ChessPiece } from '../../Piece/Model/ChessPiece';
+import { Coordinate } from '../../Piece/types';
 
 export class Square {
   private _cell: Cell;
 
-  private _piece: ChessPiece | undefined;
+  private _piece?: ChessPiece;
 
-  constructor(cell: Cell, piece: ChessPiece | undefined) {
+  constructor(cell: Cell, piece?: ChessPiece) {
     this._cell = cell;
     this._piece = piece;
   }
 
-  get square() {
+  public get square() {
     return {
       cell: this._cell,
       piece: this._piece,
     };
   }
 
+  public get cellId() {
+    return this._cell.id;
+  }
+
+  public get horizontalName() {
+    return this._cell.horizontalName;
+  }
+
+  public get verticalName() {
+    return this._cell.verticalName;
+  }
+
   public get pieceColor() {
     return this._piece?.colorHexValue;
   }
 
-  private get avaliablePieceCoordinates() {
-    // TODO
-    return [];
+  public setAvailableCoordinates(coordinates: Coordinate[]) {
+    this._piece?.setAvailableCoordinates(coordinates);
   }
 
   public get isEmpty(): boolean {

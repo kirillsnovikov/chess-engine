@@ -3,7 +3,7 @@ export enum CELL_COLOR {
   WHITE,
 }
 
-export enum CELL_VERTICAL_NAME {
+export enum CELL_HORIZONTAL_NAME {
   A = 'a',
   B = 'b',
   C = 'c',
@@ -12,11 +12,9 @@ export enum CELL_VERTICAL_NAME {
   F = 'f',
   G = 'g',
   H = 'h',
-  I = 'i',
-  J = 'j',
 }
 
-export enum CELL_HORIZONTAL_NAME {
+export enum CELL_VERTICAL_NAME {
   ONE = '1',
   TWO = '2',
   THREE = '3',
@@ -25,8 +23,6 @@ export enum CELL_HORIZONTAL_NAME {
   SIX = '6',
   SEVEN = '7',
   EIGHT = '8',
-  NINE = '9',
-  TEN = '10',
 }
 
 export const CELL_BLACK_COLOR_HEX = '#2e402e';

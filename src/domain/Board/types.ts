@@ -1,3 +1,5 @@
+import { Id } from '../Cell/types';
+
 export type Square = {
-  cell: 1;
+  id: Id;
 };

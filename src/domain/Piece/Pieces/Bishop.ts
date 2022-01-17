@@ -6,12 +6,12 @@ import { PieceCoordinate } from '../Model/PieceCoordinate';
 import { PieceId } from '../Model/PieceId';
 
 export class Bishop extends ChessPiece {
-  constructor(_baseCoordinate: PieceCoordinate, _color: PieceColor) {
+  constructor(baseCoordinate: PieceCoordinate, color: PieceColor) {
     super(
-      new PieceId(_baseCoordinate.coordinate.value),
+      new PieceId(baseCoordinate.coordinate.value),
       new ChessPieceType(CHESS_PIECE_TYPE.BISHOP),
-      _color,
-      _baseCoordinate,
+      color,
+      baseCoordinate,
     );
   }
 }

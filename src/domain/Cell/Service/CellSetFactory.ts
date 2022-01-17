@@ -7,7 +7,6 @@ import {
 } from '../constants';
 import { Cell } from '../Model/Cell';
 import { CellColor } from '../Model/CellColor';
-import { CellId } from '../Model/CellId';
 
 export class CellSetFactory {
   private _cells: Cell[] = [];
@@ -44,9 +43,8 @@ export class CellSetFactory {
 
     rows.forEach(row => {
       columns.forEach(column => {
-        const cellId = new CellId(`${column}${row}`);
         const cellColor = isBlack ? blackCellColor : whiteCellColor;
-        const cell = new Cell(cellId, cellColor);
+        const cell = new Cell(row, column, cellColor);
         this.addCell(cell);
         isBlack = !isBlack;
       });

@@ -11,20 +11,24 @@ export class ChessPiece {
 
   private _color: PieceColor;
 
+  private _baseCoordinate: PieceCoordinate;
+
   private _coordinate: PieceCoordinate;
 
-  private _avaliableCoordinates: PieceCoordinate[] = [];
+  private _availableCoordinates: Coordinate[];
 
   constructor(
     pieceId: PieceId,
     type: ChessPieceType,
     color: PieceColor,
-    coordinate: PieceCoordinate,
+    baseCoordinate: PieceCoordinate,
   ) {
     this._id = pieceId;
     this._type = type;
     this._color = color;
-    this._coordinate = coordinate;
+    this._baseCoordinate = baseCoordinate;
+    this._coordinate = baseCoordinate;
+    this._availableCoordinates = [];
   }
 
   get id() {
@@ -43,7 +47,24 @@ export class ChessPiece {
     return this._coordinate.coordinate;
   }
 
-  moveTo(to: Coordinate) {
-    this._coordinate = this._coordinate.changeCoordinate(to);
+  get availableCoordinates() {
+    return this._availableCoordinates;
+  }
+
+  public setAvailableCoordinates(coordinates: Coordinate[]) {
+    this._availableCoordinates = coordinates;
+  }
+
+  moveTo(coordinate: Coordinate): boolean {
+    if (
+      this._availableCoordinates.find(
+        availableCoordinte => availableCoordinte === coordinate,
+      ) === undefined
+    ) {
+      console.warn('Недопустимый ход');
+      return false;
+    }
+    this._coordinate = this._coordinate.changeCoordinate(coordinate);
+    return true;
   }
 }

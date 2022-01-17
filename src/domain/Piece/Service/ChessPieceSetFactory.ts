@@ -1,4 +1,5 @@
 import { ChessBoard } from '../../Board/Model/ChessBoard';
+import { CellId } from '../../Cell/Model/CellId';
 import {
   PIECE_BLACK_COLOR_HEX,
   PIECE_COLOR,
@@ -18,132 +19,36 @@ const blackPieceColor = new PieceColor(
 );
 
 export const CHESS_PIECE_SET = [
-  new Rook(
-    new PieceCoordinate(ChessBoard.findCellById('a1').id),
-    whitePieceColor,
-  ),
-  new Bishop(
-    new PieceCoordinate(ChessBoard.findCellById('b1').id),
-    whitePieceColor,
-  ),
-  new Knight(
-    new PieceCoordinate(ChessBoard.findCellById('c1').id),
-    whitePieceColor,
-  ),
-  new Queen(
-    new PieceCoordinate(ChessBoard.findCellById('d1').id),
-    whitePieceColor,
-  ),
-  new King(
-    new PieceCoordinate(ChessBoard.findCellById('e1').id),
-    whitePieceColor,
-  ),
-  new Bishop(
-    new PieceCoordinate(ChessBoard.findCellById('f1').id),
-    whitePieceColor,
-  ),
-  new Knight(
-    new PieceCoordinate(ChessBoard.findCellById('g1').id),
-    whitePieceColor,
-  ),
-  new Rook(
-    new PieceCoordinate(ChessBoard.findCellById('h1').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('a2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('b2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('c2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('d2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('e2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('f2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('g2').id),
-    whitePieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('h2').id),
-    whitePieceColor,
-  ),
-  new Rook(
-    new PieceCoordinate(ChessBoard.findCellById('a8').id),
-    blackPieceColor,
-  ),
-  new Bishop(
-    new PieceCoordinate(ChessBoard.findCellById('b8').id),
-    blackPieceColor,
-  ),
-  new Knight(
-    new PieceCoordinate(ChessBoard.findCellById('c8').id),
-    blackPieceColor,
-  ),
-  new Queen(
-    new PieceCoordinate(ChessBoard.findCellById('d8').id),
-    blackPieceColor,
-  ),
-  new King(
-    new PieceCoordinate(ChessBoard.findCellById('e8').id),
-    blackPieceColor,
-  ),
-  new Bishop(
-    new PieceCoordinate(ChessBoard.findCellById('f8').id),
-    blackPieceColor,
-  ),
-  new Knight(
-    new PieceCoordinate(ChessBoard.findCellById('g8').id),
-    blackPieceColor,
-  ),
-  new Rook(
-    new PieceCoordinate(ChessBoard.findCellById('h8').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('a7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('b7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('c7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('d7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('e7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('f7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('g7').id),
-    blackPieceColor,
-  ),
-  new Pawn(
-    new PieceCoordinate(ChessBoard.findCellById('h7').id),
-    blackPieceColor,
-  ),
+  new Rook(new PieceCoordinate(new CellId('a1')), whitePieceColor),
+  new Bishop(new PieceCoordinate(new CellId('b1')), whitePieceColor),
+  new Knight(new PieceCoordinate(new CellId('c1')), whitePieceColor),
+  new Queen(new PieceCoordinate(new CellId('d1')), whitePieceColor),
+  new King(new PieceCoordinate(new CellId('e1')), whitePieceColor),
+  new Bishop(new PieceCoordinate(new CellId('f1')), whitePieceColor),
+  new Knight(new PieceCoordinate(new CellId('g1')), whitePieceColor),
+  new Rook(new PieceCoordinate(new CellId('h1')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('a2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('b2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('c2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('d2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('e2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('f2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('g2')), whitePieceColor),
+  new Pawn(new PieceCoordinate(new CellId('h2')), whitePieceColor),
+  new Rook(new PieceCoordinate(new CellId('a8')), blackPieceColor),
+  new Bishop(new PieceCoordinate(new CellId('b8')), blackPieceColor),
+  new Knight(new PieceCoordinate(new CellId('c8')), blackPieceColor),
+  new Queen(new PieceCoordinate(new CellId('d8')), blackPieceColor),
+  new King(new PieceCoordinate(new CellId('e8')), blackPieceColor),
+  new Bishop(new PieceCoordinate(new CellId('f8')), blackPieceColor),
+  new Knight(new PieceCoordinate(new CellId('g8')), blackPieceColor),
+  new Rook(new PieceCoordinate(new CellId('h8')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('a7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('b7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('c7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('d7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('e7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('f7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('g7')), blackPieceColor),
+  new Pawn(new PieceCoordinate(new CellId('h7')), blackPieceColor),
 ];

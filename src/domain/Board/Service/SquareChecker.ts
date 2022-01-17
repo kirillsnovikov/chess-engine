@@ -1,21 +1,22 @@
 import { CELL_HORIZONTAL_NAME, CELL_VERTICAL_NAME } from '../../Cell/constants';
 import { Id } from '../../Cell/types';
-import { PieceCoordinate } from '../../Piece/Model/PieceCoordinate';
-import { Coordinate } from '../../Piece/types';
 import { Square } from '../Model/Square';
 
 export class SquareChecker {
   constructor(private _squares: Square[]) {}
 
-  public getAvailableCoordinates(currentSquare: Square): Coordinate[] {
-    const coordinates: Coordinate[] = [];
-    if (this.getUpSquare(currentSquare) !== undefined) {
-      coordinates.push(this.getUpSquare(currentSquare)!.cellId);
+  public getAvailableSquares(currentSquare: Square): Square[] {
+    const squares: Square[] = [];
+
+    const availableSquare = this.getUpSquare(currentSquare);
+
+    if (!!availableSquare) {
+      squares.push(availableSquare);
     }
-    return coordinates;
+    return squares;
   }
 
-  public getUpSquare(currentSquare: Square): Square | undefined {
+  public getUpSquare(currentSquare: Square) {
     const verticalName = this.getNextVerticalName(currentSquare.verticalName);
 
     if (!verticalName) {

@@ -1,13 +1,12 @@
-import { Id } from '../../Cell/types';
-import { PlacePiecesOnBoard } from '../Service/PlacePiecesOnBoard';
 import { SquareChecker } from '../Service/SquareChecker';
+import { SquareSet } from '../Service/SquareSet';
 import { Square } from './Square';
 
 export class ChessBoard {
   private _squares: Square[];
 
   constructor() {
-    this._squares = new PlacePiecesOnBoard().run();
+    this._squares = SquareSet.squares;
     this.checkAvailableCoordinates();
   }
 
@@ -21,7 +20,7 @@ export class ChessBoard {
       if (square.isEmpty) {
         return;
       }
-      square.setAvailableCoordinates(checker.getAvailableCoordinates(square));
+      square.availableCells = checker.getAvailableSquares(square);
     });
   }
 }

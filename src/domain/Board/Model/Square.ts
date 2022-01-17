@@ -1,15 +1,17 @@
 import { Cell } from '../../Cell/Model/Cell';
 import { ChessPiece } from '../../Piece/Model/ChessPiece';
-import { Coordinate } from '../../Piece/types';
 
 export class Square {
   private _cell: Cell;
 
   private _piece?: ChessPiece;
 
+  private _availableSquares: Square[];
+
   constructor(cell: Cell, piece?: ChessPiece) {
     this._cell = cell;
     this._piece = piece;
+    this._availableSquares = [];
   }
 
   public get square() {
@@ -21,6 +23,10 @@ export class Square {
 
   public get cellId() {
     return this._cell.id;
+  }
+
+  public get cell() {
+    return this._cell;
   }
 
   public get horizontalName() {
@@ -35,8 +41,12 @@ export class Square {
     return this._piece?.colorHexValue;
   }
 
-  public setAvailableCoordinates(coordinates: Coordinate[]) {
-    this._piece?.setAvailableCoordinates(coordinates);
+  public get availableCells() {
+    return this._availableSquares;
+  }
+
+  public set availableCells(cells: Square[]) {
+    this._availableSquares = cells;
   }
 
   public get isEmpty(): boolean {

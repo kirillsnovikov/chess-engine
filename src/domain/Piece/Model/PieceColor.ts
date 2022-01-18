@@ -1,8 +1,8 @@
-import { CELL_COLOR } from '../constants';
+import { PIECE_COLOR } from '../constants';
 import { Color } from '../types';
 
-export class CellColor {
-  constructor(private _color: CELL_COLOR, private _hex: Color) {}
+export class PieceColor {
+  constructor(private _color: PIECE_COLOR, private _hex: Color) {}
 
   get color() {
     return this._color;

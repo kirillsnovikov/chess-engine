@@ -1,4 +1,4 @@
-import { CELL_VERTICAL_NAME } from "./constants";
+import { CELL_HORIZONTAL_NAME, CELL_VERTICAL_NAME } from './constants';
 
-export type Id = `${CELL_VERTICAL_NAME}${number}`;
+export type Id = `${CELL_HORIZONTAL_NAME}${CELL_VERTICAL_NAME}`;
 export type Color = `#${string}`;

@@ -11,7 +11,8 @@
   "plugins": [
     "@typescript-eslint",
     "react",
-    "jest"
+    "jest",
+    "prettier"
   ],
   "extends": [
     "airbnb-typescript",
@@ -35,7 +36,8 @@
         "selector": "enumMember",
         "format": ["UPPER_CASE"]
       }
-    ]
+    ],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
   },
   "env": {
     "browser": true,

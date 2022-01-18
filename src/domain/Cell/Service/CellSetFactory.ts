@@ -35,8 +35,8 @@ export class CellSetFactory {
     const whiteCellColor = new CellColor(CELL_COLOR.WHITE, CELL_WHITE_COLOR_HEX);
     let isBlack = true;
 
-    rows.forEach(row => {
-      columns.forEach(column => {
+    columns.forEach(column => {
+      rows.forEach(row => {
         const cellColor = isBlack ? blackCellColor : whiteCellColor;
         const cell = new Cell(row, column, cellColor);
         this.addCell(cell);

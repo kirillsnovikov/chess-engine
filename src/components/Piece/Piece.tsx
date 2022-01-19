@@ -7,7 +7,7 @@ type ContainerProps = {
 
 const Container = styled.div<ContainerProps>`
   color: ${({ color }) => color};
-  font-size: 1.5em;
+  font-size: 0.8em;
   display: flex;
   align-items: center;
 `;

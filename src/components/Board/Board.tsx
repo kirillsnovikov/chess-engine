@@ -26,8 +26,8 @@ const Button = styled.div`
 `;
 
 const Squares = styled.div<SquaresProps>`
-  width: 1000px;
-  height: 1000px;
+  width: 500px;
+  height: 500px;
   display: flex;
   flex-wrap: ${({ isRotate }) => (isRotate ? 'wrap-reverse' : 'wrap')};
   flex-direction: ${({ isRotate }) => (isRotate ? 'row-reverse' : 'row')};

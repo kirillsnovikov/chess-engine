@@ -25,5 +25,5 @@ export enum CELL_VERTICAL_NAME {
   EIGHT = '8',
 }
 
-export const CELL_BLACK_COLOR_HEX = '#2e402e';
+export const CELL_BLACK_COLOR_HEX = '#8eb33a';
 export const CELL_WHITE_COLOR_HEX = '#cfdece';

@@ -29,11 +29,12 @@ export class CellSetFactory {
       .map((_, k) => Object.values(CELL_HORIZONTAL_NAME)[k]);
     const columns = Array(this._number)
       .fill(0)
-      .map((_, i) => Object.values(CELL_VERTICAL_NAME)[i]);
+      .map((_, i) => Object.values(CELL_VERTICAL_NAME)[i])
+      .reverse();
 
     const blackCellColor = new CellColor(CELL_COLOR.BLACK, CELL_BLACK_COLOR_HEX);
     const whiteCellColor = new CellColor(CELL_COLOR.WHITE, CELL_WHITE_COLOR_HEX);
-    let isBlack = true;
+    let isBlack = false;
 
     columns.forEach(column => {
       rows.forEach(row => {
@@ -42,6 +43,7 @@ export class CellSetFactory {
         this.addCell(cell);
         isBlack = !isBlack;
       });
+      isBlack = !isBlack;
     });
   }
 }

@@ -37,7 +37,7 @@
         "format": ["UPPER_CASE"]
       }
     ],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
   },
   "env": {
     "browser": true,

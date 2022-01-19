@@ -65,6 +65,7 @@ export const Board: React.FC<unknown> = memo(() => {
   };
 
   const movePice = (currentSquare: SquareType) => {
+    // TODO допилить логику ходов
     // if (currentSquare.availableSquares.length === 0) {
     //   setSelectedSquare(null);
     //   setTargetSquare(null);
@@ -82,8 +83,6 @@ export const Board: React.FC<unknown> = memo(() => {
   const isAvailable = (id: string): boolean => {
     return !!availableSquares.find(square => square.cellId.value === id);
   };
-
-  console.log(selectedSquare, targetSquare);
 
   return (
     <Container>

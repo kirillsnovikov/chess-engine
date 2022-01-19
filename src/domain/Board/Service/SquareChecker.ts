@@ -199,15 +199,25 @@ export class SquareChecker {
         ];
       }
 
-      if (!nextSquare.isEmpty && nextSquare.pieceColor !== currentSquare.pieceColor) {
+      // TODO неправильная проверна на currentSquare, подумать как лучше реализовать
+
+      if (
+        !nextSquare.isEmpty &&
+        !currentSquare.isEmpty &&
+        nextSquare.pieceColor !== currentSquare.pieceColor
+      ) {
         return [nextSquare];
       }
 
-      if (!nextSquare.isEmpty && nextSquare.pieceColor === currentSquare.pieceColor) {
+      if (
+        !nextSquare.isEmpty &&
+        !currentSquare.isEmpty &&
+        nextSquare.pieceColor === currentSquare.pieceColor
+      ) {
         return [];
       }
+      return [];
     }
-    return [];
   }
 
   private getVerticalSquares(currentSquare: Square, count?: number): Square[] {

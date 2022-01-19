@@ -24,6 +24,7 @@ const Styles = createGlobalStyle`
   } */
   body {
     /* height: 100%; */
+    font-family: Open-Sans, Helvetica, Sans-Serif;
     background: ${({ theme }) => theme.colors.background.primary};
   }
   #root {

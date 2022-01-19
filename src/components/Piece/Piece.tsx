@@ -7,6 +7,9 @@ type ContainerProps = {
 
 const Container = styled.div<ContainerProps>`
   color: ${({ color }) => color};
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
 `;
 
 export type PieceProps = {
@@ -15,5 +18,5 @@ export type PieceProps = {
 };
 
 export const Piece: React.FC<PieceProps> = ({ color, type }) => {
-  return <Container color={'#cfdd33'}>{type}</Container>;
+  return <Container color={'#000000'}>{type}</Container>;
 };

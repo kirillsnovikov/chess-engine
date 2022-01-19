@@ -11,6 +11,7 @@ const Container = styled.div<ContainerProps>`
   height: ${100 / 8}%;
   display: flex;
   flex: 1 0 auto;
+  justify-content: center;
   background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 

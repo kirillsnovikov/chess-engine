@@ -38,7 +38,7 @@ export type BoardProps = {
 };
 
 export const Board: React.FC<unknown> = memo(() => {
-  const { squares, move } = new ChessBoard();
+  const { squares, move, getAvailableSquares } = new ChessBoard();
   const [isRotate, setIsRotate] = useState<boolean>(false);
   const [availableSquares, setAvailableSquares] = useState<SquareType[]>([]);
   const [selectedSquare, setSelectedSquare] = useState<SquareType | null>(null);
@@ -57,11 +57,12 @@ export const Board: React.FC<unknown> = memo(() => {
     setTargetSquare(null);
   }, [selectedSquare, targetSquare]);
 
-  const defineAvailableSquares = (data: SquareType[]) => {
-    if (!data) {
+  const checkAvailableSquares = (square: SquareType) => {
+    if (square.isEmpty) {
       return;
     }
-    setAvailableSquares(data);
+
+    setAvailableSquares(getAvailableSquares(square));
   };
 
   const movePice = (currentSquare: SquareType) => {
@@ -93,7 +94,7 @@ export const Board: React.FC<unknown> = memo(() => {
             <Square
               square={square}
               isAvailable={isAvailable(square.cellId.value)}
-              setAvailableSquares={defineAvailableSquares}
+              checkAvailableSquares={checkAvailableSquares}
               setCurrentSquare={movePice}
               key={square.cellId.value}
             />

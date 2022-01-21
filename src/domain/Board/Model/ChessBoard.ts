@@ -7,19 +7,20 @@ export class ChessBoard {
 
   constructor() {
     this._squares = SquareSet.squares;
-    this.checkAvailableCoordinates();
+    this.getAvailableSquares = this.getAvailableSquares.bind(this);
   }
 
   public get squares() {
     return this._squares;
   }
 
-  public checkAvailableCoordinates(): void {
-    const checker = new SquareChecker(this._squares);
-    checker.checkSquares();
+  public getAvailableSquares(currentSquare: Square): Square[] {
+    const availableSquares = new SquareChecker(this._squares, currentSquare).checkSquares();
+    currentSquare.availableSquares = availableSquares;
+    return availableSquares;
   }
 
-  public move = (from: Square, to: Square): boolean => {
+  public move(from: Square, to: Square): boolean {
     if (from.isEmpty) {
       console.warn('Недопустимый ход');
       return false;
@@ -36,10 +37,9 @@ export class ChessBoard {
     ) {
       to.addPiece(from.piece);
       from.removePiece();
-      this.checkAvailableCoordinates();
       return true;
     }
 
     return false;
-  };
+  }
 }

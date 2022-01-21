@@ -62,6 +62,7 @@ export class SquareChecker {
   }
 
   private getKnightAvailableSquares(currentSquare: Square): Square[] {
+    // TODO убрать ходы по своим
     return this._idChecker.getKnightIds(currentSquare).map(id => this.squareById(id)) as Square[];
   }
 

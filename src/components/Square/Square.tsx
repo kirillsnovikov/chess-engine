@@ -35,7 +35,7 @@ export const Square: React.FC<SquareProps> = ({
   };
   return (
     <Container backgroundColor={backgroundColor} onClick={clickHandler}>
-      {square.piece && <Piece color={square.piece.colorHexValue} type={square.piece.type.value} />}
+      {square.piece && <Piece pieceColor={square.piece.color} notation={square.piece.notation} />}
     </Container>
   );
 };

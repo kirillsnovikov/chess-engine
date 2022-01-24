@@ -15,8 +15,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn typecheck"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "lint"
   },
   "dependencies": {
     "lodash": "^4.17.21",

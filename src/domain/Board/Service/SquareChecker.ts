@@ -62,8 +62,10 @@ export class SquareChecker {
   }
 
   private getKnightAvailableSquares(currentSquare: Square): Square[] {
-    // TODO убрать ходы по своим
-    return this._idChecker.getKnightIds(currentSquare).map(id => this.squareById(id)) as Square[];
+    return this._idChecker
+      .getKnightIds(currentSquare)
+      .map(id => this.squareById(id))
+      .filter(square => square && this.isEnemy(square)) as Square[];
   }
 
   private getPawnAvailableSquares(currentSquare: Square): Square[] {

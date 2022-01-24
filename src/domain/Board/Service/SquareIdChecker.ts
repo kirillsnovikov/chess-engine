@@ -3,9 +3,6 @@ import { CELL_HORIZONTAL_NAME, CELL_VERTICAL_NAME } from '../../Cell/constants';
 import { Id } from '../../Cell/types';
 import { isNil } from 'lodash';
 
-const test = 1;
-console.log('dfsdfsdf');
-
 export class SquareIdChecker {
   public getUpId = (currentSquare: Square): Id | undefined => {
     const verticalName = this.getNextVerticalName(currentSquare.verticalName);

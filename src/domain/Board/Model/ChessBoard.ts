@@ -1,3 +1,5 @@
+import isNil from 'lodash/isNil';
+import isEmpty from 'lodash/isEmpty';
 import { SquareChecker } from '../Service/SquareChecker';
 import { SquareSet } from '../Service/SquareSet';
 import { Square } from './Square';
@@ -7,19 +9,34 @@ export class ChessBoard {
 
   constructor() {
     this._squares = SquareSet.squares;
-    this.checkAvailableCoordinates();
+    this.getAvailableSquares = this.getAvailableSquares.bind(this);
+    this.move = this.move.bind(this);
   }
 
   public get squares() {
     return this._squares;
   }
 
-  public checkAvailableCoordinates(): void {
-    const checker = new SquareChecker(this._squares);
-    checker.checkSquares();
+  public getAvailableSquares(currentSquare: Square): Square[] {
+    const availableSquares =
+      isEmpty(currentSquare.availableSquares) && !currentSquare.isChecked
+        ? new SquareChecker(this._squares, currentSquare).checkSquares()
+        : currentSquare.availableSquares;
+    currentSquare.availableSquares = availableSquares;
+    return availableSquares;
   }
 
-  public move = (from: Square, to: Square): boolean => {
+  public resetAvailableSquares(): void {
+    this._squares.forEach(square => {
+      square.isChecked = false;
+      if (isEmpty(square.availableSquares)) {
+        return;
+      }
+      square.availableSquares = [];
+    });
+  }
+
+  public move(from: Square, to: Square): boolean {
     if (from.isEmpty) {
       console.warn('Недопустимый ход');
       return false;
@@ -32,14 +49,15 @@ export class ChessBoard {
 
     if (
       !!from.availableSquares.find(square => square.cellId.value === to.cellId.value) &&
-      !!from.piece
+      !isNil(from.piece)
     ) {
+      from.piece.isMoved = true;
       to.addPiece(from.piece);
       from.removePiece();
-      this.checkAvailableCoordinates();
+      this.resetAvailableSquares();
       return true;
     }
 
     return false;
-  };
+  }
 }

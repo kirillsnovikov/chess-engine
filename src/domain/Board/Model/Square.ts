@@ -11,10 +11,13 @@ export class Square {
 
   private _availableSquares: Square[];
 
+  private _isChecked: boolean;
+
   constructor(cell: Cell, piece?: ChessPiece) {
     this._cell = cell;
     this._piece = piece;
     this._availableSquares = [];
+    this._isChecked = false;
   }
 
   public get square() {
@@ -66,6 +69,14 @@ export class Square {
 
   public set availableSquares(cells: Square[]) {
     this._availableSquares = cells;
+  }
+
+  public get isChecked() {
+    return this._isChecked;
+  }
+
+  public set isChecked(checked: boolean) {
+    this._isChecked = checked;
   }
 
   public get isEmpty(): boolean {

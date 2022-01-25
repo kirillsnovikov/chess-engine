@@ -33,4 +33,8 @@ export class ChessPiece {
   set isMoved(isMoved: boolean) {
     this._isMoved = isMoved;
   }
+
+  get notation() {
+    return this._type.getNotation();
+  }
 }

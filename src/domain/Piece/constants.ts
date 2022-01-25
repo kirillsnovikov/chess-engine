@@ -12,6 +12,15 @@ export enum CHESS_PIECE_TYPE {
   KING = 'Король',
 }
 
+export enum CHESS_PIECE_NOTATION {
+  PAWN = 'p',
+  ROOK = 'R',
+  KNIGHT = 'N',
+  BISHOP = 'B',
+  QUEEN = 'Q',
+  KING = 'K',
+}
+
 export enum CHESS_PIECE_MOVE {
   UP = 'UP',
   DOWN = 'DOWN',

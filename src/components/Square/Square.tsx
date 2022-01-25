@@ -18,24 +18,24 @@ const Container = styled.div<ContainerProps>`
 export type SquareProps = {
   square: SquareType;
   isAvailable: boolean;
-  setAvailableSquares: (squares: SquareType[]) => void;
+  checkAvailableSquares: (squares: SquareType) => void;
   setCurrentSquare: (square: SquareType) => void;
 };
 
 export const Square: React.FC<SquareProps> = ({
   square,
   isAvailable,
-  setAvailableSquares,
+  checkAvailableSquares,
   setCurrentSquare,
 }) => {
   const backgroundColor = isAvailable ? '#FFD700' : square.cellHexColor;
   const clickHandler = () => {
-    setAvailableSquares(square.availableSquares);
+    checkAvailableSquares(square);
     setCurrentSquare(square);
   };
   return (
     <Container backgroundColor={backgroundColor} onClick={clickHandler}>
-      {!square.isEmpty && <Piece color={square.pieceHexColor} type={square.pieceType.value} />}
+      {square.piece && <Piece pieceColor={square.piece.color} notation={square.piece.notation} />}
     </Container>
   );
 };

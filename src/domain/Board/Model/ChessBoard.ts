@@ -51,6 +51,7 @@ export class ChessBoard {
       !!from.availableSquares.find(square => square.cellId.value === to.cellId.value) &&
       !isNil(from.piece)
     ) {
+      from.piece.isMoved = true;
       to.addPiece(from.piece);
       from.removePiece();
       this.resetAvailableSquares();

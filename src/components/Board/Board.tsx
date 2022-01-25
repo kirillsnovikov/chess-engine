@@ -73,10 +73,10 @@ export const Board: React.FC<unknown> = memo(() => {
   };
 
   const movePice = (currentSquare: SquareType) => {
-    if (currentSquare.piece && activeColor !== currentSquare.piece.color) {
-      return;
-    }
     if (isNil(selectedSquare) && !isEmpty(currentSquare.availableSquares)) {
+      if (currentSquare.piece && activeColor !== currentSquare.piece.color) {
+        return;
+      }
       setSelectedSquare(currentSquare);
     }
 
@@ -87,8 +87,7 @@ export const Board: React.FC<unknown> = memo(() => {
       if (!!moveToSquare) {
         setTargetSquare(currentSquare);
       }
-
-      if (!currentSquare.isEmpty) {
+      if (currentSquare.piece && activeColor === currentSquare.piece.color) {
         setSelectedSquare(currentSquare);
       }
     }

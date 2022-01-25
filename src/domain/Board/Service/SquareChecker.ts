@@ -17,6 +17,7 @@ export class SquareChecker {
   }
 
   public checkSquares(): Square[] {
+    this._checkedSquare.isChecked = true;
     if (!this._checkedSquare.piece) {
       return [];
     }

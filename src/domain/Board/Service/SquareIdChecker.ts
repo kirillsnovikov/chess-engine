@@ -1,7 +1,7 @@
 import { Square } from '../Model/Square';
 import { CELL_HORIZONTAL_NAME, CELL_VERTICAL_NAME } from '../../Cell/constants';
 import { Id } from '../../Cell/types';
-import { isNil } from 'lodash';
+import isNil from 'lodash/isNil';
 
 export class SquareIdChecker {
   public getUpId = (currentSquare: Square): Id | undefined => {
